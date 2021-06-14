@@ -8,7 +8,7 @@
 	#define HUNTER_API __declspec(dllimport)
 #endif
 
-#ifdef _MY_DEBUG
+#ifdef _MYDEBUG
 	#define HLOG(x) std::cout << x << std::endl;
 #else
 	#define HLOG(x)
