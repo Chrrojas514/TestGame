@@ -1,7 +1,8 @@
 #pragma once
 
-#include<HunterCentralUtility.h>
-#include <HunterApp.h>
+#include "HunterCentralUtility.h"
+#include "HunterApp.h"
+
 
 #define START_GAME(class_name)							\
 	int main()											\

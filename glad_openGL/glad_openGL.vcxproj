@@ -21,32 +21,32 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{8a1a2374-8a6a-42b0-8142-196328cfd1fb}</ProjectGuid>
-    <RootNamespace>Hunter</RootNamespace>
+    <ProjectGuid>{60340da7-9f8c-491c-9427-07fe0abfe9aa}</ProjectGuid>
+    <RootNamespace>gladopenGL</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -72,30 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>.\obj</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>.\obj</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>.\obj</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>.\obj</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_HUNTER_DLL_BUILD;_MYDEBUG;_HUNTER_WINDOWS;_MY_DEBUG;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\dev\TestGame\Hunter\include\Windows;C:\dev\TestGame\glfw\include;C:\dev\TestGame\glad_openGL\include;C:\dev\TestGame\Hunter\include;</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>C:\dev\TestGame\glad_openGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,12 +101,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_HUNTER_DLL_BUILD;_MYDEBUG;_HUNTER_WINDOWS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\dev\TestGame\Hunter\include\Windows;C:\dev\TestGame\glfw\include;C:\dev\TestGame\glad_openGL\include;C:\dev\TestGame\Hunter\include;</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>C:\dev\TestGame\glad_openGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,12 +116,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_HUNTER_DLL_BUILD;_MYDEBUG;_HUNTER_WINDOWS;_MY_DEBUG;_HUNTER_DLL_BUILD;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\dev\TestGame\stb_image;C:\dev\TestGame\Hunter\include\Windows;C:\dev\TestGame\glad_openGL\include;C:\dev\TestGame\glfw\include;C:\dev\TestGame\Hunter\include;C:\dev\TestGame\stb_image;C:\dev\TestGame\Hunter\include\Windows;C:\dev\TestGame\glfw\include;C:\dev\TestGame\glad_openGL\include;C:\dev\TestGame\Hunter\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>C:\dev\TestGame\glad_openGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,12 +131,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_HUNTER_DLL_BUILD;_MYDEBUG;_HUNTER_WINDOWS;_HUNTER_DLL_BUILD;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\dev\TestGame\stb_image;C:\dev\TestGame\Hunter\include\Windows;C:\dev\TestGame\glad_openGL\include;C:\dev\TestGame\glfw\include;C:\dev\TestGame\Hunter\include;C:\dev\TestGame\Hunter\include\Windows;C:\dev\TestGame\glfw\include;C:\dev\TestGame\glad_openGL\include;C:\dev\TestGame\Hunter\include;C:\dev\TestGame\Hunter\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>C:\dev\TestGame\glad_openGL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -159,33 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\Hunter.h" />
-    <ClInclude Include="include\HunterApp.h" />
-    <ClInclude Include="include\HunterCentralUtility.h" />
-    <ClInclude Include="include\OpenGL\OpenGLShader.h" />
-    <ClInclude Include="include\pch.h" />
-    <ClInclude Include="include\Shader.h" />
-    <ClInclude Include="include\Sprite.h" />
-    <ClInclude Include="include\Window.h" />
-    <ClInclude Include="include\Windows\WindowsWindow.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\HunterApp.cpp" />
-    <ClCompile Include="src\OpenGL\OpenGLShader.cpp" />
-    <ClCompile Include="src\pch.cpp" />
-    <ClCompile Include="src\Sprite.cpp" />
-    <ClCompile Include="src\Windows\WindowsWindow.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\glad_openGL\glad_openGL.vcxproj">
-      <Project>{60340da7-9f8c-491c-9427-07fe0abfe9aa}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\glfw\build\src\glfw.vcxproj">
-      <Project>{74922a40-3202-334d-9881-0f56ac8eb5aa}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\stb_image\stb_image.vcxproj">
-      <Project>{68379cc2-86e4-40fb-b4b9-80aabf914c83}</Project>
-    </ProjectReference>
+    <ClCompile Include="src\glad.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
