@@ -8,8 +8,13 @@ namespace Hunter
 	class HUNTER_API Sprite
 	{
 	public:
-		Sprite(const std::string& spriteFile);
-		~Sprite();
+		Sprite(const std::string& spriteFile);				//constructor
+		~Sprite();											//destructor
+
+		Sprite(const Sprite& other) = delete;               //Copy constructor -- = delete means Sprite class cannot use this
+		Sprite(Sprite&& other) = delete;					//Move constructor
+		Sprite& operator==(const Sprite& other) = delete;   //Assignment operator 
+		Sprite& operator=(Sprite&& other) = delete;			//Move operator
 
 		bool Load(const std::string& spriteFile);
 
