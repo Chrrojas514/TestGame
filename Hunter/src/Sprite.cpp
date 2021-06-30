@@ -1,14 +1,15 @@
 #include "Sprite.h"
+#include <pch.h>
 #include "stb_image.h"
 
 namespace Hunter
 {
 	Sprite::Sprite(const std::string& spriteFile)
 	{
+		stbi_set_flip_vertically_on_load(true);
+
 		if (!Load(spriteFile))
 			HLOG("ERROR LOADING SPRITES")
-
-
 	}
 
 	bool Sprite::Load(const std::string& spriteFile)
@@ -29,6 +30,11 @@ namespace Hunter
 	int Sprite::GetHeight() const
 	{
 		return mHeight; 
+	}
+
+	const unsigned char* Sprite::GetImagePointer() const
+	{
+		return mImage;
 	}
 
 	Sprite::~Sprite()

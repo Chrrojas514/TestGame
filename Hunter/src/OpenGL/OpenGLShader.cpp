@@ -27,6 +27,9 @@ namespace Hunter
 		if (!fragmentShader)
 			return false;
 
+		if (mShaderProgram)
+			glDeleteProgram(mShaderProgram);
+
 		mShaderProgram = glCreateProgram();
 
 		glAttachShader(mShaderProgram, vertexShader);

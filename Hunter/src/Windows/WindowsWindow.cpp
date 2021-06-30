@@ -35,4 +35,22 @@ namespace Hunter
 	{
 		glfwPollEvents();
 	}
+
+	int WindowsWindow::GetWidth() const
+	{
+		int width = 0;
+		int height = 0;
+		glfwGetWindowSize(window, &width, &height);
+
+		return width;
+	}
+
+	int WindowsWindow::GetHeight() const
+	{
+		int width = 0;
+		int height = 0;
+		glfwGetWindowSize(window, &width, &height);
+
+		return height;
+	}
 }

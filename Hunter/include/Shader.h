@@ -1,7 +1,7 @@
 #pragma once
 
+#include <string>
 #include "HunterCentralUtility.h"
-#include <pch.h>
 
 namespace Hunter
 {
@@ -12,6 +12,6 @@ namespace Hunter
 		virtual void Use() = 0;
 
 		virtual void SetVec2Int(const std::string& uniformName, int valueOne, int valueTwo) = 0;
-		virtual ~Shader() = 0;
+		virtual ~Shader() = 0 {};
 	};
 }

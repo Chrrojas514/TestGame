@@ -126,7 +126,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_HUNTER_DLL_BUILD;_MYDEBUG;_HUNTER_WINDOWS;_MY_DEBUG;_HUNTER_DLL_BUILD;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_HUNTER_DLL_BUILD;_MYDEBUG;_HUNTER_WINDOWS;_HUNTER_OPENGL;_MY_DEBUG;_HUNTER_DLL_BUILD;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>C:\dev\TestGame\stb_image;C:\dev\TestGame\Hunter\include\Windows;C:\dev\TestGame\glad_openGL\include;C:\dev\TestGame\glfw\include;C:\dev\TestGame\Hunter\include;C:\dev\TestGame\stb_image;C:\dev\TestGame\Hunter\include\Windows;C:\dev\TestGame\glfw\include;C:\dev\TestGame\glad_openGL\include;C:\dev\TestGame\Hunter\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -144,7 +144,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_HUNTER_DLL_BUILD;_MYDEBUG;_HUNTER_WINDOWS;_HUNTER_DLL_BUILD;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_HUNTER_DLL_BUILD;_MYDEBUG;_HUNTER_WINDOWS;_HUNTER_OPENGL;_HUNTER_DLL_BUILD;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>C:\dev\TestGame\stb_image;C:\dev\TestGame\Hunter\include\Windows;C:\dev\TestGame\glad_openGL\include;C:\dev\TestGame\glfw\include;C:\dev\TestGame\Hunter\include;C:\dev\TestGame\Hunter\include\Windows;C:\dev\TestGame\glfw\include;C:\dev\TestGame\glad_openGL\include;C:\dev\TestGame\Hunter\include;C:\dev\TestGame\Hunter\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -162,8 +162,11 @@
     <ClInclude Include="include\Hunter.h" />
     <ClInclude Include="include\HunterApp.h" />
     <ClInclude Include="include\HunterCentralUtility.h" />
+    <ClInclude Include="include\OpenGL\OpenGLImplementation.h" />
     <ClInclude Include="include\OpenGL\OpenGLShader.h" />
     <ClInclude Include="include\pch.h" />
+    <ClInclude Include="include\Renderer.h" />
+    <ClInclude Include="include\RendererImplementation.h" />
     <ClInclude Include="include\Shader.h" />
     <ClInclude Include="include\Sprite.h" />
     <ClInclude Include="include\Window.h" />
@@ -171,8 +174,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\HunterApp.cpp" />
+    <ClCompile Include="src\OpenGL\OpenGLImplementation.cpp" />
     <ClCompile Include="src\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Sprite.cpp" />
     <ClCompile Include="src\Windows\WindowsWindow.cpp" />
   </ItemGroup>

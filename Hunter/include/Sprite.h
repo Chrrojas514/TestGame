@@ -1,7 +1,7 @@
 #pragma once
 
+#include <string>
 #include "HunterCentralUtility.h"
-#include <pch.h>
 
 namespace Hunter
 {
@@ -15,6 +15,7 @@ namespace Hunter
 
 		int GetWidth() const;
 		int GetHeight() const;
+		const unsigned char* GetImagePointer() const;
 
 	private:
 		unsigned char* mImage = nullptr; 
