@@ -1,8 +1,4 @@
 #include <Hunter.h>
-
-class GameApp : public Hunter::HunterApp
-{
-
-};
+#include "GameApp.h"
 
 START_GAME(GameApp)

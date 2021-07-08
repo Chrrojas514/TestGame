@@ -60,10 +60,19 @@ namespace Hunter
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		//hardcoded? no...?
 		mDefaultShader.SetVec2Int("windowSize", HunterApp::GetWindowWidth(), HunterApp::GetWindowHeight());
 
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4); //problem involves this line
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+		glDeleteTextures(1, &picture);
+		glDeleteBuffers(1, &VBO);
+		glDeleteVertexArrays(1, &VAO);
+	}
+
+	void OpenGLImplementation::ClearFrame()
+	{
+		glClearColor(0.0, 0.0, 0.0, 0.0);
+		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
 	OpenGLImplementation::~OpenGLImplementation() {}

@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "WindowsWindow.h"
 #include "Sprite.h"
+#include "HunterKeys.h"
 
 namespace Hunter
 {
@@ -12,17 +13,22 @@ namespace Hunter
 
 		Renderer::Init();
 
-		Sprite testOne{ "../Hunter/assets/Sprites/face.png" };
-		Sprite testTwo{ "../Hunter/assets/Sprites/fish.png" };
-
+		mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
 
 		while (true)    //collect player input, update game objects, render stuff, repeat
 		{
-			Renderer::Draw(testOne, 100, 100, testOne.GetWidth(), testOne.GetHeight());
-			Renderer::Draw(testTwo, 100, 100, testTwo.GetWidth(), testTwo.GetHeight());
+			Renderer::ClearFrame();
+
+			//Will be central tool for game programmer -- where programmer specifies what should be done on each run of 
+			//the game loop
+			OnUpdate();
+
+			std::this_thread::sleep_until(mNextFrameTime);
 
 			appWindow->SwapBuffers();
 			appWindow->PollForEvents();
+
+			mNextFrameTime += mFrameDuration;
 		}
 	}
 
@@ -31,15 +37,11 @@ namespace Hunter
 		return instance;
 	}
 
-	void HunterApp::Init()
-	{
-		if (instance == nullptr)
-			instance = new HunterApp;
-	}
-
 	HunterApp::HunterApp()
 	{
 		assert(instance == nullptr);
+
+		instance = this; //lose ability to create single hunterapp object ourselves 
 
 #ifdef _HUNTER_WINDOWS
 		appWindow = new WindowsWindow; 
@@ -47,13 +49,26 @@ namespace Hunter
 	#Only_windows_supported_for_now
 #endif
 		
-		bool success{ appWindow->CreateWindow(800, 600) };
+		bool success{ appWindow->CreateWindow(800, 800) };
 		assert(success);
+
+		appWindow->SetKeyPressedCallback([this](KeyPressedEvent& event) {
+			OnKeyPressed(event);
+			});
+
+		appWindow->SetKeyReleasedCallback([this](KeyReleasedEvent& event) {
+			OnKeyReleased(event);
+			});
 	}
 
 	HunterApp::~HunterApp()
 	{
 		appWindow->DeleteWindow();
+	}
+
+	void HunterApp::OnUpdate()
+	{
+		//HunterApp does not do anything with this function, game programmer will use/define this
 	}
 
 	int HunterApp::GetWindowWidth()
@@ -65,4 +80,10 @@ namespace Hunter
 	{
 		return instance->appWindow->GetHeight();
 	}
+
+	void HunterApp::OnKeyPressed(KeyPressedEvent& event)
+	{ }
+
+	void HunterApp::OnKeyReleased(KeyReleasedEvent & event)
+	{ }
 }

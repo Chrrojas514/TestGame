@@ -2,6 +2,7 @@
 
 #include "HunterCentralUtility.h"
 #include "Window.h"
+#include "KeyboardEvents.h"
 
 #define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
@@ -19,7 +20,18 @@ namespace Hunter
 
 		virtual int GetWidth() const override;
 		virtual int GetHeight() const override;
+
+		virtual void SetKeyPressedCallback(std::function<void(KeyPressedEvent&)> newCallback) override;
+		virtual void SetKeyReleasedCallback(std::function<void(KeyReleasedEvent&)> newCallback) override;
+
 	private:
+		struct Callbacks
+		{
+			std::function<void(KeyPressedEvent&)> keyPressedCallback;
+			std::function<void(KeyReleasedEvent&)> keyReleasedCallback;
+		} mCallbacks;
+
+		std::function<void(KeyPressedEvent&)> mKeyPressedCallback;
 		GLFWwindow* window;
 	};
 }
