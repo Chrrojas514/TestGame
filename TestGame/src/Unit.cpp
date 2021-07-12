@@ -1,7 +1,7 @@
 #include "..\include\Unit.h"
 #include "Hunter.h"
 
-Unit::Unit(const std::string& spritePath, int newSpeed):mImage(spritePath), mSpeed(newSpeed)
+Unit::Unit(const std::string& spritePath, int newSpeed): spriteLocation(spritePath), mImage(spritePath), mSpeed(newSpeed)
 { }
 
 void Unit::SetXCoord(int newX)
@@ -39,6 +39,11 @@ int Unit::GetSpeed() const
 	return mSpeed;
 }
 
+std::string Unit::GetSpritePath() const
+{
+	return spriteLocation;
+}
+
 void Unit::UpdateXCoord(int changeX)
 {
 	mXcoord += changeX;
@@ -61,8 +66,8 @@ bool Unit::OverlapsWith(const Unit& other) const
 	if ((mXcoord <= other.mXcoord && other.mXcoord <= mXcoord + GetWidth()) ||
 		(mXcoord <= other.mXcoord + other.GetWidth() && other.mXcoord + other.GetWidth() <= mXcoord + GetWidth()))
 	{
-		if ((mYcoord <= other.mYcoord && other.mYcoord <= mYcoord + GetHeight()) ||
-			(mYcoord <= other.mYcoord + other.GetHeight() && other.mYcoord + other.GetHeight() <= mYcoord + GetHeight()))
+		if (mYcoord <= other.mYcoord ||
+			mYcoord <= other.mYcoord + other.GetHeight() && other.mYcoord + other.GetHeight() <= mYcoord + GetHeight())
 
 			return true;
 	}

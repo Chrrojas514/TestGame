@@ -7,7 +7,7 @@ namespace Hunter
 	{
 		glfwInit();
 
-		window = glfwCreateWindow(width, height, "Test Window", NULL, NULL);
+		window = glfwCreateWindow(width, height, "The Buggy Game", NULL, NULL);
 
 		if (window == nullptr)
 			return false;

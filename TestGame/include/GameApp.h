@@ -19,9 +19,11 @@ public:
 	virtual void OnKeyReleased(Hunter::KeyReleasedEvent& event) override;
 
 private:
-	Unit mSpaceship;
-	std::deque<Unit> mPlanets;
+	Unit mFlySwatter;
+	std::deque<Unit> mSmackables;
 
+	Hunter::Sprite mTitle;
+	Hunter::Sprite mInstructions;
 	Hunter::Sprite mGameOverMessage;
 	Hunter::Sprite mBackground;
 
@@ -29,9 +31,11 @@ private:
 	{
 		LeftMove,
 		RightMove,
-		Forward
-	} mSpaceshipAction;
+		Forward,
+		Smack
+	} mFlySwatterAction;
 
+	int mScore;
 	bool mGameEnd;
 	long long mFrameNumber;
 };

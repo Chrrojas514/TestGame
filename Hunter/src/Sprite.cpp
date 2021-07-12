@@ -29,7 +29,7 @@ namespace Hunter
 
 	int Sprite::GetHeight() const
 	{
-		return mHeight; 
+		return mHeight;
 	}
 
 	const unsigned char* Sprite::GetImagePointer() const

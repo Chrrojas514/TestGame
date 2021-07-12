@@ -18,6 +18,8 @@ public:
 
 	int GetSpeed() const;
 
+	std::string GetSpritePath() const;
+
 	void UpdateXCoord(int changeX);
 	void UpdateYCoord(int changeY);
 
@@ -32,6 +34,7 @@ public:
 
 private:
 	Hunter::Sprite mImage;
+	std::string spriteLocation;
 
 	int mXcoord;
 	int mYcoord;

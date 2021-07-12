@@ -1,64 +1,85 @@
 #include "GameApp.h"
 
-GameApp::GameApp(): mSpaceship("assets/unknown.png", 5), 
-					mBackground("assets/oceanBackground.png"),
+GameApp::GameApp(): mFlySwatter("assets/unknown.png", 6), 
+					mTitle("assets/title.png"),
+					mInstructions("assets/howToPlay.png"),
+					mBackground("assets/woodenWall.png"),
+					mScore(0),
 					mGameOverMessage("assets/GameOver.png"),
-					mSpaceshipAction(Action::Forward), 
+					mFlySwatterAction(Action::Forward), 
 					mFrameNumber(0), mGameEnd(false)
 { }
 
 void GameApp::OnUpdate()
 {
-	Hunter::Renderer::Draw(mBackground, 0, 0, GameApp::GetWindowWidth(), GameApp::GetWindowHeight());
+	Hunter::Renderer::Draw(mBackground, 0, 0, mBackground.GetWidth(), mBackground.GetHeight());
+	Hunter::Renderer::Draw(mTitle, 100, 650, mTitle.GetWidth(), mTitle.GetHeight());
+	Hunter::Renderer::Draw(mInstructions, 15, 550, mInstructions.GetWidth(), mInstructions.GetHeight());
+
 	if (mGameEnd)
 	{
-		Hunter::Renderer::Draw(mGameOverMessage, 250, 150, mGameOverMessage.GetWidth(), mGameOverMessage.GetHeight());
+		Hunter::Renderer::Draw(mGameOverMessage, 200, 350, mGameOverMessage.GetWidth(), mGameOverMessage.GetHeight());
 		return;
 	}
-
-	if (mFrameNumber % 30 == 0) //four times per second, gen a new planet
+	 
+	if (mFrameNumber % 45 == 0)
 	{
-		std::string planetType{ "assets/fish.png" }; // with random planets/assets use std::string planetType{"assets/fish" + std::to_string(rand()%5+1) + ".png"};
-		mPlanets.emplace_back(planetType, 10); //emplace_back - (check cplusplus for more) takes arguments for Unit constructor and constructs it in-q
-		mPlanets.back().SetYCoord(GameApp::GetWindowHeight());
-		mPlanets.back().SetXCoord(rand() % (GameApp::GetWindowWidth() - mPlanets.back().GetWidth()));
+		std::string smackableType{ "assets/smackable" + std::to_string(rand()%3 + 1) + ".png" };
+		mSmackables.emplace_back(smackableType, 7); 
+
+		int currSizeSmackables = mSmackables.size();
+
+		mSmackables.back().SetYCoord(GameApp::GetWindowHeight());
+		mSmackables.back().SetXCoord(rand() % (GameApp::GetWindowWidth() - mSmackables.back().GetWidth()));
 	}
 
-	//Spaceship movement
-	if (mSpaceshipAction == Action::LeftMove)
+	if (mFlySwatterAction == Action::LeftMove)
 	{
-		if (mSpaceship.GetXCoord() >= mSpaceship.GetSpeed())
-			mSpaceship.UpdateXCoord(-mSpaceship.GetSpeed());
+		if (mFlySwatter.GetXCoord() >= mFlySwatter.GetSpeed())
+			mFlySwatter.UpdateXCoord(-mFlySwatter.GetSpeed());
 
 		else
-			mSpaceship.SetXCoord(0);
+			mFlySwatter.SetXCoord(0);
 	}
 
-	else if (mSpaceshipAction == Action::RightMove)
+	else if (mFlySwatterAction == Action::RightMove)
 	{
-		if (mSpaceship.GetXCoord() + mSpaceship.GetWidth() + mSpaceship.GetSpeed() <= GameApp::GetWindowWidth()) //if we want to go right, lets check if its valid move
-			mSpaceship.UpdateXCoord(mSpaceship.GetSpeed());
+		if (mFlySwatter.GetXCoord() + mFlySwatter.GetWidth() + mFlySwatter.GetSpeed() <= GameApp::GetWindowWidth())
+			mFlySwatter.UpdateXCoord(mFlySwatter.GetSpeed());
 
 		else
-			mSpaceship.SetXCoord(GameApp::GetWindowWidth() - mSpaceship.GetWidth());
+			mFlySwatter.SetXCoord(GameApp::GetWindowWidth() - mFlySwatter.GetWidth());
 	}
 
-	while (!mPlanets.empty() && mPlanets.front().GetYCoord() <= -mPlanets.front().GetHeight())
-		mPlanets.pop_front();
+	while (!mSmackables.empty() && mSmackables.front().GetYCoord() <= -mSmackables.front().GetHeight())
+		mSmackables.pop_front();
 
-	// Move planet down
-	for (auto& planet : mPlanets)
+	for (auto& smackable : mSmackables)
 	{
-		planet.UpdateYCoord(-planet.GetSpeed());
+		smackable.UpdateYCoord(-smackable.GetSpeed());
 
-		if (planet.OverlapsWith(mSpaceship))
+		if (smackable.OverlapsWith(mFlySwatter) &&
+			smackable.GetSpritePath() == "assets/smackable3.png" &&
+			mFlySwatterAction == Action::Smack)
+		{
 			mGameEnd = true;
+			std::cout << mScore << std::endl;
+		}
+			
+
+		else if (smackable.OverlapsWith(mFlySwatter) &&
+				 smackable.GetSpritePath() == "assets/smackable1.png" || smackable.GetSpritePath() == "assets/smackable2.png" &&
+				 mFlySwatterAction == Action::Smack)
+		{
+			mScore++;
+			mSmackables.pop_front();
+		}
 	}
 
-	for (const auto& planet : mPlanets)
-		planet.Draw();
+	for (const auto& smackable : mSmackables)
+		smackable.Draw();
 
-	mSpaceship.Draw();
+	mFlySwatter.Draw();
 
 	mFrameNumber++;
 }
@@ -67,17 +88,22 @@ void GameApp::OnKeyPressed(Hunter::KeyPressedEvent & event)
 {
 	if (event.GetKeyCode() == HUNTER_KEY_LEFT)
 	{
-		mSpaceshipAction = Action::LeftMove;
+		mFlySwatterAction = Action::LeftMove;
 	}
 
 	else if (event.GetKeyCode() == HUNTER_KEY_RIGHT)
 	{
-		mSpaceshipAction = Action::RightMove;
+		mFlySwatterAction = Action::RightMove;
+	}
+
+	else if (event.GetKeyCode() == HUNTER_KEY_SPACE)
+	{
+		mFlySwatterAction = Action::Smack;
 	}
 }
 
 void GameApp::OnKeyReleased(Hunter::KeyReleasedEvent& event)
 {
 	if (event.GetKeyCode() == HUNTER_KEY_LEFT || event.GetKeyCode() == HUNTER_KEY_RIGHT)
-		mSpaceshipAction = Action::Forward;
+		mFlySwatterAction = Action::Forward;
 }
